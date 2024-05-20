@@ -1,0 +1,50 @@
+
+##### GLOBAL CONFIG #####
+default: null
+scenario: "Ifen Recording"
+internal_sampling_freq: 20000000.0
+
+##### SIGNAL SOURCE CONFIG #####
+signal_source.implementation: "file"
+signal_source.active_signals: ["GPS L1CA"]
+signal_source.filename: "../signal_data/class_ifen_8bit_20e6_if_5000445.88565834.bin"
+signal_source.ms_to_skip: 10
+signal_source.ms_to_process: 1000
+signal_source.sample_type: "real_int8"
+signal_source.sampling_freq_hz: 20000000.0
+signal_source.mix_freq_hz: 5000445.88565834
+
+##### ACQUISITION CONFIG #####
+acquisition.implementation: "pcps_coarse"
+acquisition.doppler_max_hz: 5000
+acquisition.doppler_step_hz: 200
+acquisition.coherent_integration_time_ms: 1
+acquisition.threshold: 17
+acquisition.dump: True
+acquisition.dump_filename: "acq_dump_ch_"
+
+##### TRACKING CONFIG #####
+tracking.implementation: "scalar_kalman_filter"
+tracking.fll_bw_hz: 2.0
+tracking.pll_bw_hz: 15.0
+tracking.dll_bw_hz: 1.0
+tracking.correlator_spacing_chips: 0.5
+tracking.min_pull_in_time_ms: 300
+tracking.dump: True
+tracking.dump_filename: "trk_dump_ch_"
+
+##### OBSERVABLES CONFIG #####
+observables.implementation: "range_and_range_rate"
+observables.cn0_estimator: "moments"
+observables.lock_detector_integration_time_ms: 1000
+observables.dump: True
+observables.dump_filename: "observables"
+
+##### PVT CONFIG #####
+pvt.implementation: "gnss_least_squares"
+pvt.update_rate_ms: 100
+pvt.display_rate_ms: 1000
+pvt.iono_model: "broadcast"
+pvt.trop_model: "saastamoinen"
+pvt.dump: True
+pvt.dump_filename: "pvt_solution"
