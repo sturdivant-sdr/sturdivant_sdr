@@ -27,5 +27,6 @@ case "$OSTYPE" in
 esac
 
 # clone repos into utils folder
+mkdir src/utils
 git clone git@github.com:sturdivant-sdr/file_operations.git src/utils/file_operations
 git clone git@github.com:sturdivant-sdr/fftw_wrapper.git src/utils/fftw_wrapper
